@@ -4,6 +4,10 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Laravel\Lumen\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\{
+    InsertCommand,
+    UpdateCommand
+};
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +17,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        InsertCommand::class,
+        UpdateCommand::class
     ];
 
     /**

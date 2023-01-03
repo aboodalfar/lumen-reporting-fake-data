@@ -1,26 +1,45 @@
 <?php
 
-namespace Database\Seeders;
+namespace App\Console\Commands;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
-class DataSeeder extends Seeder
+
+class InsertCommand extends Command
 {
     /**
-     * Run the database seeds.
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'reporting:insert';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Create a new command instance.
      *
      * @return void
      */
-    public function run()
+    public function __construct()
     {
+        parent::__construct();
         date_default_timezone_set("Asia/Amman");
-        
-        //$branches = ["SV","CY","MU"];
+    }
 
-        
-        
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
         $logins = DB::table('rep_users')
             ->where("USR_CURRENCY","GBP")
             ->select('USR_LOGIN','branch')
@@ -29,7 +48,7 @@ class DataSeeder extends Seeder
             ;
 
 
-        for($i = 0; $i <100;$i++){
+        //for($i = 0; $i <100;$i++){
 
             $random_user = $logins[array_rand($logins,1)];
     
@@ -43,10 +62,8 @@ class DataSeeder extends Seeder
                     "TRD_MODIFY_TIME" =>  date("Y-m-d H:i:s")
                 ]
             );
-        }
-        
-        //end
-        
-        
+        //}
+    
+
     }
 }
